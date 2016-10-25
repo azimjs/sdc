@@ -1,0 +1,21 @@
+<a href="#" ng-click="doTheBack()" style="display: block"> <div id="ios-arrow-left" style="display: block;float: left">Go Back</div></a>
+<div style="clear: both;">&nbsp;</div>
+<div class='panel-body' style="display: block;float: left">
+    <div style="display: block;">
+    <a target='_blank' href='{{image.localURL}}'>
+        <img class='screenshot' src='{{image.localURL}}' style="width: 75px;margin-left: 50px;">
+    </a>
+    </div>    
+    <br>
+    <a href="#" ng-click="downloadImage(image)"><img src="lw_3.png" style="width: 100px;margin-left:40px"></a>
+
+    <br><br>
+    <hr/>
+    <span> Upload New File:</span><br><br>
+    <input type="file" custom-on-change="uploadFile" ng-click="screenshotClicked(image)"/> <br><br>
+    <hr/>
+    <div style="display: block; margin-left:35px">
+    <img ng-click="previousImage()" src="previous.png" style="width: 20px; cursor: pointer"> {{imageIndex+1}} of {{currentCase.screen_shot[sIndex].images.length}}
+        <img ng-click="nextImage()" src="next.png" style="width: 20px;cursor: pointer">
+    </div>
+</div>

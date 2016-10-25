@@ -1,0 +1,58 @@
+<div>
+    <a href="#/settings"> <img src="settings.png" style="width: 32px">
+    <span style="font-weight: bold;color: #5D5E5D">Settings</span></a><br><br><br>
+    <b>Select Username:</b><br>
+    <div class="input-control select">
+        <select  id="username_selector"  ng-model="currentCase.user" ng-show="cases.length" ng-change="updateUser()"
+                 ng-options="item as item.name for item in cases">
+        </select>
+    </div>
+    <br><br>
+    <b>Network:</b><br>
+    <div class="input-control select">
+        <select ng-model="currentCase.network" default-option="Select Network" ng-show="currentCase.user.user_networks.length"
+                ng-options="item as item.name for item in currentCase.user.user_networks" ng-change="updateCurrentCase()">
+        </select>
+    </div>
+    <br><br>
+    <span ng-if="currentCase.network"><b>Status :</b> <br> <span style="font-style: italic;text-transform: capitalize">{{userCaseStatus}}</span></span><br>
+    <div id="progress_bar" ng-if="currentCase.network" class="progress large" data-value="{{progress_value}}" data-color="ribbed-amber" data-role="progressBar"></div>
+    <br>
+    <br>
+</div>
+<div class='panel panel-default tile bg-gray' data-role="tile" ng-repeat="screenshot in currentCase.screen_shot | reverse" >
+    <div class='panel-body'>
+        <!--<a target='_blank' href='{{screenshot.localURL}}'>
+            <img class='screenshot' src='{{screenshot.localURL}}'>
+        </a>-->
+        <div ng-repeat="image in screenshot.images|limitTo:2">
+            <a href='#/screenshot_item/{{$parent.$index}}/{{$index}}' >
+                <img class='screenshot' src='{{image.localURL}}' style="float: left; border:1px #8A8A8A solid; margin-right: 2px;">
+            </a>
+        </div>
+        <div ng-if="screenshot.images.length > 2">
+            <a href='#/screenshot_item/{{$parent.$index}}/2' >
+                <img class='screenshot view_more_box' title="View More Images" src='more.png' style="float: left; margin-top:20px; margin-left: 6px;">
+            </a>
+        </div>
+        <div style="clear:both;height: 1px;width:1px;">
+
+        </div>
+        <br/>
+            <span>
+                <a target='_blank' ng-href='{{screenshot.URL}}'>Go to page</a>
+            </span><br>
+        <img src="zip.png" style="height: 40px" ng-click="downloadZip($index)"><br>
+
+        <!--<input type="file" custom-on-change="uploadFile" ng-click="screenshotClicked(screenshot)"/><span>-->
+        <b>Status:</b> <span style="font-style: italic;text-transform: capitalize">{{screenshot.status}}</span></span><br>
+        <b>Clicks:</b> <span style="font-style: italic;text-transform: capitalize">{{screenshot.clickCount}}</span></span><br>
+        <b>Expansion Time(secs):</b> <span style="font-style: italic;text-transform: capitalize">{{screenshot.commentExpansionTime}}</span></span>
+        <!--<button ng-click="showTime(screenshot)" class='btn btn-primary button primary'>Time</button>-->
+        <br>
+        <button id='submitToSDC' ng-click="submitToSDC($index)" class='btn btn-primary button primary'>Submit to SDC</button>
+        <button class="button cycle-button danger" ng-click="deleteScreenshot($index)">X</button>
+    </div>
+</div>
+
+

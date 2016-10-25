@@ -1,0 +1,118 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+<head>
+    <title>MyPlugin's Popup</title>
+    <link href="metro.css" rel="stylesheet">
+    <link href="metro-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: 100%;
+            min-width:175px;
+        }
+
+        #status {
+            /* avoid an excessively wide status text */
+            white-space: pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 400px;
+        }
+        #openPanel{
+            width: 100%;
+        }
+        .popup_button{
+            width: 100%;
+            margin: 1% 1%;
+        }
+
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+-->
+    <script src="jquery.js"></script>
+    <script src="metro.js"></script>
+
+    <script src="popup.js"></script>
+
+</head>
+<body>
+<div class="app-bar">
+        <span class="app-bar-element">
+            <span class="title">ScreenCapture Plugin
+            </span>
+        </span>
+</div>
+<!--br>
+    <center>
+    <button id="openPanel" class="button input-state-success success" style="width: 60%;">Open Panel</button>
+    </center>
+<br-->
+<br>
+Open Panel :
+<label class="switch-original" style="margin-left:20px">
+    <input id="openPanel" type="checkbox">
+    <span class="check"></span>
+</label>
+
+<br>
+<!--br>
+<div style="outline: #999999 solid 3px;">
+    <button id="capture_webpage" class="button success popup_button" style="background: #CDDC39;color:#000;border:0;padding: 0;margin:0">CAPTURE WEBPAGE</button><br>
+</div-->
+<br>
+<div style="outline: #999999 solid 3px;">
+
+    <button id="all_stories" class="button success popup_button" style="background: #357D7D;border:0">View All Stories</button><br>
+    <button id="more_stories" class="button success popup_button" style="background: #1C4C4C;border:0">Toggle View More</button><br>
+
+    <br>
+    <div style="background: #eee;padding:2px;margin-top:4px">
+    <span style="font-weight: bold">Select Capture Type :</span><br>
+        </div>
+
+    <div style="background: #eee;padding:2px;margin-top:4px">
+    &emsp;<input type="radio" name="capture_type" id="long_capture" value="long_capture" checked/> Full Page Capture<br><br>
+    </div>
+    <div style="background: #eee;padding:2px;margin-top:4px">
+        &emsp;<input type="radio" name="capture_type" id="short_capture" value="short_capture" /> Capture Partial Page<br><br>
+        <div  id="short_capture_box" class="input-control text" data-role="input" style="padding-left: 20px;display:none">
+            <input id="pageCount" type="text" placeholder="No. of Screens" style="width: 150px"/><br>
+            <!--button class="button helper-button clear"><span class="mif-cross"></span></button-->
+            <br><br>
+        </div>
+    </div>
+    <div style="background: #eee;padding:2px;margin-top:4px">
+    &emsp;<input type="radio" name="capture_type" id="partial_capture" value="partial_capture" /> Capture Between Dates<br><br>
+    <div id="partial_capture_box" class="input-control text" data-role="input" style="padding-left: 20px;height:auto;display:none">
+        <input id="fromDate" type="text" placeholder="From: MM/DD/YYYY" style="width: 150px"/><br>
+        <!--button class="button helper-button clear"><span class="mif-cross"></span></button-->
+        <br>
+        <input id="toDate" type="text" placeholder="To: MM/DD/YYYY" style="width: 150px"/><br>
+        <!--button class="button helper-button clear"><span class="mif-cross"></span></button-->
+        <br>
+    </div>
+    </div>
+    <!--<button id="viewAlbum">View Album</button><br>-->
+    <button id="capture" class="button success popup_button">Capture</button><br>
+    <!--button id="long_capture" class="button error">Capture Long Page</button><br-->
+    <!--button id="partial_capture" class="button success popup_button">Capture Partial Page</button><br-->
+</div>
+<!--button id="viewCases">View Cases</button><br>
+<div id="currentCases">
+    <select id="nameSelect"></select><br>
+    <select id="networkSelect"></select><br>
+</div-->
+</body>
+</html>
+
